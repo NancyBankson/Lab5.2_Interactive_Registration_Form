@@ -1,3 +1,4 @@
+// Declarations
 const username = document.getElementById("username");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -12,6 +13,7 @@ let emailCorrect = false;
 let passwordCorrect = false;
 let confirmPasswordCorrect = false;
 
+// Username retrieval from storage
 window.addEventListener('load', () => {
     const user = localStorage.getItem("username");
     if (user) {
@@ -19,6 +21,7 @@ window.addEventListener('load', () => {
     }
 });
 
+// Check validity of username
 username.addEventListener("input", function (event) {
     if (username.validity.valueMissing) {
         username.setCustomValidity("Please enter a Username (I'm not yelling)");
@@ -33,6 +36,7 @@ username.addEventListener("input", function (event) {
     usernameError.textContent = username.validationMessage;
 })
 
+// Check validity of email
 email.addEventListener("input", function (event) {
     if (email.validity.patternMismatch) {
         email.setCustomValidity("Email address must use the format example@.domain.com");
@@ -47,6 +51,7 @@ email.addEventListener("input", function (event) {
     emailError.textContent = email.validationMessage;
 })
 
+// Check validity of password
 password.addEventListener("input", function (event) {
     if (password.validity.valueMissing) {
         password.setCustomValidity("Please enter a password");
@@ -61,6 +66,7 @@ password.addEventListener("input", function (event) {
     passwordError.textContent = password.validationMessage;
 })
 
+// Check validity of confirmed password
 confirmPassword.addEventListener("input", function (event) {
     if (confirmPassword.validity.valueMissing) {
         confirmPassword.setCustomValidity("Please re-enter your password");
@@ -73,11 +79,9 @@ confirmPassword.addEventListener("input", function (event) {
     confirmPasswordError.textContent = confirmPassword.validationMessage;
 })
 
-
+// Event listener for submit button with prevent default
 submitButton.addEventListener("submit", function(event) {    
     event.preventDefault();
-    // localStorage.setItem("username", username.value);
-    console.log(usernameCorrect);
     if (usernameCorrect === false) {
         alert("Enter a Username, must be at least 3 characters");
         username.focus();
@@ -94,6 +98,7 @@ submitButton.addEventListener("submit", function(event) {
         alert("Passwords must match");
         confirmPassword.focus();
     }
+    // If no errors found, return success message
     if ((usernameCorrect === true) && (emailCorrect === true) && (passwordCorrect === true) && (confirmPasswordCorrect === true)) {
         alert("Qapla!  That's Klingon for 'Success!'");
         username.value = "";
