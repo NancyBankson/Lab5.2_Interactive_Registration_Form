@@ -49,10 +49,10 @@ password.addEventListener("input", function(event) {
 confirmPassword.addEventListener("input", function(event) {
     if (confirmPassword.validity.valueMissing) {
         confirmPassword.setCustomValidity("Please re-enter your password");
-    } else if (password.value != confirmPassword.ariaValueMax) {
+    } else if (password.value != confirmPassword.value) {
         confirmPassword.setCustomValidity("Passwords must match")
     } else {confirmPassword.setCustomValidity("")}
-    confirmPasswordError.textContent = username.validationMessage;
+    confirmPasswordError.textContent = confirmPassword.validationMessage;
 })
 
 
